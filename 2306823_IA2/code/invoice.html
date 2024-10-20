@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="invoice.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-logo">
+            <img src="../images/logo.png" alt="Logo Not Found">
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="login.html" class="link active">Home</a></li>
+                <li><a href="product.html" class="link">Products/Services</a></li>
+                <li><a href="invoice.html" class="link">Invoice</a></li>
+                <li><a href="about.html" class="link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="invoice">
+        <h2 class="section-title">Invoice Details</h2>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Product/Service</th>
+                    <th>Price</th>
+                    <th>Tax</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-body">
+            </tbody>
+        </table>
+
+        <div class="invoice-actions">
+            <button class="cancel-btn">Cancel</button>
+            <button class="exit-btn">Exit</button>
+        </div>
+    </section>
+
+    <script>
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || [];
+
+        function populateInvoice() {
+            const invoiceBody = document.getElementById('invoice-body');
+            invoiceBody.innerHTML = ''; 
+
+            if (orderDetails.length === 0) {
+                invoiceBody.innerHTML = '<tr><td colspan="5">No items in cart.</td></tr>';
+                return;
+            }
+
+            orderDetails.forEach(item => {
+                const price = parseFloat(item.price.replace('$', '')); 
+                const tax = price * 0.1; 
+                const total = price + tax;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${new Date().toLocaleDateString()}</td>
+                    <td>${item.title}</td>
+                    <td>$${price.toFixed(2)}</td>
+                    <td>$${tax.toFixed(2)}</td>
+                    <td>$${total.toFixed(2)}</td>
+                `;
+                invoiceBody.appendChild(row);
+            });
+        }
+        document.querySelector('.cancel-btn').addEventListener('click', function() {
+            alert('Invoice has been cancelled.');
+            window.location.href = "product.html";
+        });
+
+        document.querySelector('.exit-btn').addEventListener('click', function() {
+            window.location.href = "login.html"; 
+        });
+
+        populateInvoice();
+    </script>
+
+</body>
+</html>

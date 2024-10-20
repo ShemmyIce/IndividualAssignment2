@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef; 
+    color: #333;
+}
+
+.nav {
+    background-color: #004a99; 
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid #003366; 
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.nav-menu ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-menu ul li {
+    margin-left: 30px;
+}
+
+.nav-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-menu ul li a:hover, .link.active {
+    background-color: #003366; 
+}
+
+.invoice {
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.section-title {
+    text-align: center;
+    color: #004a99;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid #004a99; 
+    padding-bottom: 10px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.invoice-table th, .invoice-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-table th {
+    background-color: #f7f7f7; 
+    color: #004a99; 
+    font-weight: bold;
+}
+
+.invoice-table tr:hover {
+    background-color: #f1f1f1; 
+}
+
+.invoice-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cancel-btn, .exit-btn {
+    background-color: #004a99;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cancel-btn:hover, .exit-btn:hover {
+    background-color: #003366; 
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .invoice {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-menu ul li {
+        margin: 5px 0;
+    }
+}
